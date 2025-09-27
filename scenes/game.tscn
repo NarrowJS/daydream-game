@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://p8l6y07hul5m"]
+[gd_scene load_steps=5 format=3 uid="uid://p8l6y07hul5m"]
 
 [ext_resource type="PackedScene" uid="uid://bqhsfa6dyny2w" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://d1gowp6ib0asq" path="res://scenes/mobcreate.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bhhxgnay7nko0" path="res://scenes/mobs.tscn" id="3_lnu2h"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
 
 [node name="game" type="Node2D"]
+script = ExtResource("1_yqjtg")
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
 
 [node name="player" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(1, 0)
@@ -19,3 +25,10 @@ position = Vector2(0, -14)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 27)
 shape = SubResource("WorldBoundaryShape2D_uwrxv")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="Mobs" parent="." instance=ExtResource("3_lnu2h")]
+position = Vector2(47, -9)
