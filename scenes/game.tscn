@@ -1,8 +1,16 @@
+
 [gd_scene load_steps=5 format=3 uid="uid://p8l6y07hul5m"]
 
 [ext_resource type="PackedScene" uid="uid://bqhsfa6dyny2w" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://d1gowp6ib0asq" path="res://scenes/mobcreate.gd" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bhhxgnay7nko0" path="res://scenes/mobs.tscn" id="3_lnu2h"]
+
+[gd_scene load_steps=6 format=3 uid="uid://p8l6y07hul5m"]
+
+[ext_resource type="PackedScene" uid="uid://bqhsfa6dyny2w" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://4e7e52ix4hcn" path="res://assets/healthbarUnder.png" id="2_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://d11vgdbmon1qc" path="res://assets/healthbarProgress.png" id="3_iywne"]
+[ext_resource type="Script" uid="uid://cqrwah3tg0ix5" path="res://scripts/texture_progress_bar.gd" id="4_p57ef"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
 
@@ -12,18 +20,37 @@ script = ExtResource("1_yqjtg")
 [node name="TileMap" type="TileMap" parent="."]
 format = 2
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -443.0
+offset_top = 38.0
+offset_right = -379.0
+offset_bottom = 78.0
+grow_horizontal = 0
+scale = Vector2(6, 6)
+texture_under = ExtResource("2_lbhrr")
+texture_over = ExtResource("3_iywne")
+script = ExtResource("4_p57ef")
+player = NodePath("../../player")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -111.0
+offset_top = -68.0
+offset_right = 114.0
+offset_bottom = 63.0
+
 [node name="player" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(1, 0)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -6)
-zoom = Vector2(4, 4)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, -14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 27)
+position = Vector2(0, 73)
 shape = SubResource("WorldBoundaryShape2D_uwrxv")
 
 [node name="Timer" type="Timer" parent="."]
