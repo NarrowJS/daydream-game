@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
+
 class_name Player
+
+signal healthChanged
 
 @export var speed: float = 100.0
 
