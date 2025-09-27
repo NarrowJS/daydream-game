@@ -43,7 +43,11 @@ position = Vector2(0, 73)
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 shape = SubResource("WorldBoundaryShape2D_uwrxv")
+=======
+shape = SubResource("WorldBoundaryShape2D_uwrxv")
+>>>>>>> Stashed changes
 =======
 shape = SubResource("WorldBoundaryShape2D_uwrxv")
 >>>>>>> Stashed changes
