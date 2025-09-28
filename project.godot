@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="StartMenu"
-run/main_scene="uid://6kxg6fiqd63v"
+run/main_scene="uid://p8l6y07hul5m"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

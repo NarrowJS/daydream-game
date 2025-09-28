@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dxdub1tayry1e" path="res://scenes/mobSpawning.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://bqhsfa6dyny2w" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://4e7e52ix4hcn" path="res://assets/healthbarUnder.png" id="2_lbhrr"]
-[ext_resource type="PackedScene" uid="uid://b03ykog087en1" path="res://scenes/map.tscn" id="2_u5sy4"]
+[ext_resource type="PackedScene" path="res://scenes/map.tscn" id="2_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://d11vgdbmon1qc" path="res://assets/healthbarProgress.png" id="3_iywne"]
 [ext_resource type="PackedScene" uid="uid://bhhxgnay7nko0" path="res://scenes/mobs.tscn" id="3_lnu2h"]
 [ext_resource type="Script" uid="uid://cqrwah3tg0ix5" path="res://scripts/texture_progress_bar.gd" id="4_p57ef"]
@@ -31,18 +31,18 @@ collision_mask = 2
 position = Vector2(300, 100)
 collision_mask = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="hud" type="CanvasLayer" parent="."]
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="hud" node_paths=PackedStringArray("player")]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -443.0
-offset_top = 38.0
-offset_right = -379.0
-offset_bottom = 78.0
+offset_left = -203.0
+offset_top = 15.0
+offset_right = -139.0
+offset_bottom = 55.0
 grow_horizontal = 0
-scale = Vector2(6, 6)
+scale = Vector2(2.9200046, 3.079999)
 step = 0.01
 value = 50.0
 texture_under = ExtResource("2_lbhrr")
@@ -50,11 +50,11 @@ texture_progress = ExtResource("3_iywne")
 script = ExtResource("4_p57ef")
 player = NodePath("../../player")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+[node name="waveDisplay" type="RichTextLabel" parent="hud"]
 offset_left = 8.0
 offset_right = 307.0
 offset_bottom = 110.0
-theme_override_font_sizes/normal_font_size = 80
+theme_override_font_sizes/normal_font_size = 40
 text = "Wave: 1"
 fit_content = true
 scroll_active = false
@@ -80,6 +80,8 @@ rotation = -1.5707964
 wait_time = 0.2
 autostart = true
 
+[node name="Mobs" parent="." instance=ExtResource("3_lnu2h")]
+position = Vector2(415, -150)
 [node name="selector" type="CanvasLayer" parent="."]
 visible = false
 
@@ -141,4 +143,10 @@ volume_db = 5.725
 autoplay = true
 bus = &"Music"
 
+[node name="InBetweenWaves" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="InBetweenWaves" to="." method="_on_in_between_waves_timeout"]
