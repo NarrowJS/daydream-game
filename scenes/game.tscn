@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://p8l6y07hul5m"]
+[gd_scene load_steps=9 format=3 uid="uid://p8l6y07hul5m"]
 
 [ext_resource type="Script" path="res://scenes/mobSpawning.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://bqhsfa6dyny2w" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -6,9 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d11vgdbmon1qc" path="res://assets/healthbarProgress.png" id="3_iywne"]
 [ext_resource type="PackedScene" uid="uid://bhhxgnay7nko0" path="res://scenes/mobs.tscn" id="3_lnu2h"]
 [ext_resource type="Script" uid="uid://cqrwah3tg0ix5" path="res://scripts/texture_progress_bar.gd" id="4_p57ef"]
-[ext_resource type="Texture2D" uid="uid://dmy7y4d2bhurw" path="res://assets/UI_TravelBook_BookCover01a.png" id="6_gee14"]
-[ext_resource type="Texture2D" uid="uid://dwyfbmpqf1j75" path="res://assets/UI_TravelBook_Slot01a.png" id="6_u5sy4"]
-[ext_resource type="Texture2D" uid="uid://d1qe3crknt6c4" path="res://assets/UI_TravelBook_IconTick01a.png" id="8_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://c3cuy15sp6lns" path="res://selector.tscn" id="10_vtaks"]
 
 [sub_resource type="Curve2D" id="Curve2D_iywne"]
 _data = {
@@ -72,197 +70,11 @@ rotation = -1.5707964
 wait_time = 0.2
 autostart = true
 
-[node name="selector" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="selector"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -936.0
-offset_top = -524.5
-offset_right = 936.0
-offset_bottom = 524.5
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.6784314, 0.3647059, 1)
-
-[node name="TextureRect" type="TextureRect" parent="selector"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -905.0
-offset_top = -509.0
-offset_right = 906.0
-offset_bottom = 506.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_gee14")
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="selector/TextureRect"]
-layout_mode = 0
-offset_left = 513.5
-offset_top = 385.5
-offset_right = 1285.5
-offset_bottom = 535.0
-theme_override_font_sizes/normal_font_size = 100
-text = "_________________"
-horizontal_alignment = 1
-
-[node name="OptionButton2" type="OptionButton" parent="selector/TextureRect"]
-visible = false
-layout_mode = 0
-offset_left = 726.0
-offset_top = 163.0
-offset_right = 1074.0
-offset_bottom = 366.0
-item_count = 3
-popup/item_0/text = "Speed"
-popup/item_0/id = 0
-popup/item_1/text = "Damage"
-popup/item_1/id = 1
-popup/item_2/text = "Knockback"
-popup/item_2/id = 2
-
-[node name="GridContainer" type="GridContainer" parent="selector/TextureRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -509.5
-offset_top = 47.5
-offset_right = -411.5
-offset_bottom = 77.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(10.4, 8.56)
-columns = 3
-
-[node name="TextureButton" type="TextureButton" parent="selector/TextureRect/GridContainer"]
-layout_mode = 2
-texture_normal = ExtResource("6_u5sy4")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="selector/TextureRect/GridContainer/TextureButton"]
-layout_mode = 0
-offset_left = 1.923077
-offset_right = 41.923077
-offset_bottom = 40.0
-scale = Vector2(0.7038462, 0.7102805)
-theme_override_font_sizes/normal_font_size = 9
-text = "Eyes"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureButton2" type="TextureButton" parent="selector/TextureRect/GridContainer"]
-layout_mode = 2
-texture_normal = ExtResource("6_u5sy4")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="selector/TextureRect/GridContainer/TextureButton2"]
-layout_mode = 0
-offset_left = 1.923077
-offset_right = 41.923077
-offset_bottom = 40.0
-scale = Vector2(0.7038462, 0.7102805)
-theme_override_font_sizes/normal_font_size = 9
-text = "Arms"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureButton3" type="TextureButton" parent="selector/TextureRect/GridContainer"]
-layout_mode = 2
-texture_normal = ExtResource("6_u5sy4")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="selector/TextureRect/GridContainer/TextureButton3"]
-layout_mode = 0
-offset_left = 1.923077
-offset_right = 41.923077
-offset_bottom = 40.0
-scale = Vector2(0.7038462, 0.7102805)
-theme_override_font_sizes/normal_font_size = 9
-text = "Legs"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureButton" type="TextureButton" parent="selector/TextureRect"]
-layout_mode = 0
-offset_left = 1544.5
-offset_top = 656.5
-offset_right = 1560.4836
-offset_bottom = 675.22595
-scale = Vector2(9.759999, 8.319998)
-texture_normal = ExtResource("8_0tnpc")
-stretch_mode = 3
-
-[node name="GridContainer2" type="GridContainer" parent="selector/TextureRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -509.5
-offset_top = -391.5
-offset_right = -411.5
-offset_bottom = -361.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(10.4, 8.56)
-columns = 3
-
-[node name="TextureButton" type="TextureButton" parent="selector/TextureRect/GridContainer2"]
-layout_mode = 2
-texture_normal = ExtResource("6_u5sy4")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="selector/TextureRect/GridContainer2/TextureButton"]
-layout_mode = 0
-offset_left = 1.923077
-offset_right = 41.923077
-offset_bottom = 40.0
-scale = Vector2(0.7038462, 0.7102805)
-theme_override_font_sizes/normal_font_size = 9
-text = "Speed"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureButton2" type="TextureButton" parent="selector/TextureRect/GridContainer2"]
-layout_mode = 2
-texture_normal = ExtResource("6_u5sy4")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="selector/TextureRect/GridContainer2/TextureButton2"]
-layout_mode = 0
-offset_left = 1.923077
-offset_right = 41.923077
-offset_bottom = 40.0
-scale = Vector2(0.7038462, 0.7102805)
-theme_override_font_sizes/normal_font_size = 9
-text = "Strength"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureButton3" type="TextureButton" parent="selector/TextureRect/GridContainer2"]
-layout_mode = 2
-texture_normal = ExtResource("6_u5sy4")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="selector/TextureRect/GridContainer2/TextureButton3"]
-layout_mode = 0
-offset_left = 1.923077
-offset_right = 41.923077
-offset_bottom = 40.0
-scale = Vector2(0.7038462, 0.7102805)
-theme_override_font_sizes/normal_font_size = 9
-text = "Knock
-Back"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Mobs" parent="." instance=ExtResource("3_lnu2h")]
 position = Vector2(415, -150)
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer2" instance=ExtResource("10_vtaks")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

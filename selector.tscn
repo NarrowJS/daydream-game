@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3cuy15sp6lns"]
+[gd_scene load_steps=6 format=3 uid="uid://c3cuy15sp6lns"]
 
 [ext_resource type="Texture2D" uid="uid://dmy7y4d2bhurw" path="res://assets/UI_TravelBook_BookCover01a.png" id="1_pl5vu"]
 [ext_resource type="Script" uid="uid://b6ovo3apsr0go" path="res://scripts/selector.gd" id="1_sqkg4"]
 [ext_resource type="Texture2D" uid="uid://dwyfbmpqf1j75" path="res://assets/UI_TravelBook_Slot01a.png" id="2_sqkg4"]
 [ext_resource type="Texture2D" uid="uid://d1qe3crknt6c4" path="res://assets/UI_TravelBook_IconTick01a.png" id="3_ygee2"]
+[ext_resource type="Texture2D" uid="uid://gffwnsjb21e" path="res://assets/UI_TravelBook_Slot01c.png" id="5_ygee2"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -21,13 +22,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -79.0
-offset_top = -97.0
-offset_right = 1732.0
-offset_bottom = 918.0
+offset_left = -256.0
+offset_top = -175.0
+offset_right = 1555.0
+offset_bottom = 840.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.12554598, 0.14528283)
+scale = Vector2(0.28554475, 0.34528223)
 texture = ExtResource("1_pl5vu")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="TextureRect"]
@@ -55,7 +56,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Knockback"
 popup/item_2/id = 2
 
-[node name="GridContainer" type="GridContainer" parent="TextureRect"]
+[node name="sacrificeCont" type="GridContainer" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -71,52 +72,55 @@ grow_vertical = 2
 scale = Vector2(10.4, 8.56)
 columns = 3
 
-[node name="TextureButton" type="TextureButton" parent="TextureRect/GridContainer"]
+[node name="btn1" type="TextureButton" parent="TextureRect/sacrificeCont"]
 layout_mode = 2
 texture_normal = ExtResource("2_sqkg4")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/GridContainer/TextureButton"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/sacrificeCont/btn1"]
 layout_mode = 0
 offset_left = 1.923077
 offset_right = 41.923077
 offset_bottom = 40.0
 scale = Vector2(0.7038462, 0.7102805)
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 9
 text = "Eyes"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureButton2" type="TextureButton" parent="TextureRect/GridContainer"]
+[node name="btn2" type="TextureButton" parent="TextureRect/sacrificeCont"]
 layout_mode = 2
 texture_normal = ExtResource("2_sqkg4")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/GridContainer/TextureButton2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/sacrificeCont/btn2"]
 layout_mode = 0
 offset_left = 1.923077
 offset_right = 41.923077
 offset_bottom = 40.0
 scale = Vector2(0.7038462, 0.7102805)
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 9
 text = "Arms"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureButton3" type="TextureButton" parent="TextureRect/GridContainer"]
+[node name="btn3" type="TextureButton" parent="TextureRect/sacrificeCont"]
 layout_mode = 2
 texture_normal = ExtResource("2_sqkg4")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/GridContainer/TextureButton3"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/sacrificeCont/btn3"]
 layout_mode = 0
 offset_left = 1.923077
 offset_right = 41.923077
 offset_bottom = 40.0
 scale = Vector2(0.7038462, 0.7102805)
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 9
 text = "Legs"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="TextureRect"]
+[node name="submit" type="TextureButton" parent="TextureRect"]
 layout_mode = 0
 offset_left = 1544.5
 offset_top = 656.5
@@ -126,7 +130,7 @@ scale = Vector2(9.759999, 8.319998)
 texture_normal = ExtResource("3_ygee2")
 stretch_mode = 3
 
-[node name="GridContainer2" type="GridContainer" parent="TextureRect"]
+[node name="buffCont" type="GridContainer" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -142,46 +146,50 @@ grow_vertical = 2
 scale = Vector2(10.4, 8.56)
 columns = 3
 
-[node name="TextureButton" type="TextureButton" parent="TextureRect/GridContainer2"]
+[node name="btn1" type="TextureButton" parent="TextureRect/buffCont"]
 layout_mode = 2
 texture_normal = ExtResource("2_sqkg4")
+texture_pressed = ExtResource("5_ygee2")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/GridContainer2/TextureButton"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/buffCont/btn1"]
 layout_mode = 0
 offset_left = 1.923077
 offset_right = 41.923077
 offset_bottom = 40.0
 scale = Vector2(0.7038462, 0.7102805)
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 9
 text = "Speed"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureButton2" type="TextureButton" parent="TextureRect/GridContainer2"]
+[node name="btn2" type="TextureButton" parent="TextureRect/buffCont"]
 layout_mode = 2
 texture_normal = ExtResource("2_sqkg4")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/GridContainer2/TextureButton2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/buffCont/btn2"]
 layout_mode = 0
 offset_left = 1.923077
 offset_right = 41.923077
 offset_bottom = 40.0
 scale = Vector2(0.7038462, 0.7102805)
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 9
 text = "Strength"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureButton3" type="TextureButton" parent="TextureRect/GridContainer2"]
+[node name="btn3" type="TextureButton" parent="TextureRect/buffCont"]
 layout_mode = 2
 texture_normal = ExtResource("2_sqkg4")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/GridContainer2/TextureButton3"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/buffCont/btn3"]
 layout_mode = 0
 offset_left = 1.923077
 offset_right = 41.923077
 offset_bottom = 40.0
 scale = Vector2(0.7038462, 0.7102805)
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 9
 text = "Knock
 Back"

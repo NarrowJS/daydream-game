@@ -1,10 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://bqhsfa6dyny2w"]
+[gd_scene load_steps=28 format=3 uid="uid://bqhsfa6dyny2w"]
 
 [ext_resource type="Script" uid="uid://oqq3ursa13jo" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://6rxcni7pdhi0" path="res://assets/Soldier-Attack01.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://ds71dacwgy8og" path="res://assets/Soldier-Idle.png" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://y43jkuvd717o" path="res://assets/Soldier-Walk.png" id="4_dqkch"]
-[ext_resource type="PackedScene" uid="uid://c3cuy15sp6lns" path="res://selector.tscn" id="5_qlg0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("2_qhqgy")
@@ -195,5 +194,3 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackarea"]
 position = Vector2(7, -8)
 shape = SubResource("CircleShape2D_g2els")
-
-[node name="Control" parent="." instance=ExtResource("5_qlg0r")]
