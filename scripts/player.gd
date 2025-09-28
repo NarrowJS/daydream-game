@@ -9,11 +9,14 @@ signal healthChanged
 
 @export var attacking = false
 
-@export var maxHealth = 30
+@export var maxHealth: int = 30
 
-@onready var currentHealth: int = 15
+@export var currentHealth: int = 30
 
 @onready var animated_sprite = $AnimatedSprite2D
+
+func _ready():
+	currentHealth = maxHealth
 
 func _process(delta):
 	if Input.is_action_just_pressed("attack"):
