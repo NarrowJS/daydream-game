@@ -12,8 +12,9 @@ var buffs = {
 	"btn2": "strength",
 	"btn3": "knockback"
 }
-
+var player = null
 func _ready():
+	player = get_node("/root/game/player")
 	for i in range(1, 4):  # buttons named Button1 .. Button6
 		var btn = $TextureRect/sacrificeCont.get_node("btn%d" % i)
 		btn.pressed.connect(_on_button_pressed.bind("sacrifice",btn))
@@ -43,8 +44,19 @@ func _select_button_in_group(group_node, chosen_button):
 	
 func _apply_player_stats():
 	if selected_buff and selected_sacrifice:
-		var buffValue = buffs[selected_buff]
-		print(buffValue)
+		var buffType = buffs[selected_buff]
+		
+		
+		if buffType == "speed":
+			player.speed = 200
+		elif buffType == "strength":
+			player.damage = 30
+		elif buffType == "knockback":
+			player.knockback = 3
+			
+		
+		
+		close()
 	
 func open():
 	visible = true
@@ -52,4 +64,4 @@ func open():
 
 func close():
 	visible = false
-	is_open = true
+	is_open = false
