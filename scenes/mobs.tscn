@@ -1,6 +1,6 @@
 [gd_scene load_steps=34 format=3 uid="uid://bhhxgnay7nko0"]
 
-[ext_resource type="Script" uid="uid://b5bncf0uxeqgi" path="res://scenes/orc.gd" id="1_5tbdg"]
+[ext_resource type="Script" path="res://scenes/orc.gd" id="1_5tbdg"]
 [ext_resource type="Texture2D" uid="uid://cnnd1ro06ajik" path="res://assets/Orc.png" id="2_486dv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s27y7"]
@@ -229,6 +229,7 @@ radius = 439491.66
 radius = 4.1231055
 
 [node name="orc" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_5tbdg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

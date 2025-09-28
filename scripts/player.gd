@@ -11,7 +11,7 @@ signal healthChanged
 
 @export var maxHealth = 30
 
-@onready var currentHealth: int = 15
+@export var currentHealth: int = 15
 
 @onready var animated_sprite = $AnimatedSprite2D
 
