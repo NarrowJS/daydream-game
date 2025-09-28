@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://yl3dp1yd4xt0"]
+
+[ext_resource type="Script" uid="uid://bvcn303urjvaj" path="res://scenes/mobss/orcy.gd" id="1_2wvco"]
+[ext_resource type="Script" uid="uid://r15yyh4g5c7v" path="res://scenes/mobss/anim.gd" id="2_2wvco"]
+[ext_resource type="Texture2D" uid="uid://dag6tn7kg7u0j" path="res://assets/Minifantasy_Monster_Creatures_Assets/Angel_of_Death/AngelOfDeathIdle.png" id="2_uqwx3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wvco"]
+atlas = ExtResource("2_uqwx3")
+region = Rect2(0, 0, 32, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43jlc"]
+atlas = ExtResource("2_uqwx3")
+region = Rect2(32, 0, 32, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nptub"]
+atlas = ExtResource("2_uqwx3")
+region = Rect2(64, 0, 32, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g03nj"]
+atlas = ExtResource("2_uqwx3")
+region = Rect2(96, 0, 32, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhknx"]
+atlas = ExtResource("2_uqwx3")
+region = Rect2(128, 0, 32, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17d07"]
+atlas = ExtResource("2_uqwx3")
+region = Rect2(160, 0, 32, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_amtye"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wvco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43jlc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nptub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g03nj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhknx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17d07")
+}],
+"loop": true,
+"name": &"FlyForward",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oaafi"]
+radius = 51998.516
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vcwwt"]
+radius = 4.1231055
+
+[node name="orc" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 2
+script = ExtResource("1_2wvco")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_amtye")
+animation = &"FlyForward"
+frame_progress = 0.46968344
+script = ExtResource("2_2wvco")
+
+[node name="HitArea" type="Area2D" parent="."]
+scale = Vector2(1e-05, 1e-05)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+scale = Vector2(-86.56001, 91.589226)
+shape = SubResource("CircleShape2D_oaafi")
+
+[node name="OrcShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_vcwwt")
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_follow_area_body_entered"]
+[connection signal="body_exited" from="HitArea" to="." method="_on_hit_area_body_exited"]
