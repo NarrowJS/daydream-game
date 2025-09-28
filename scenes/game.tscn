@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/mobSpawning.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://bqhsfa6dyny2w" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://4e7e52ix4hcn" path="res://assets/healthbarUnder.png" id="2_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://b03ykog087en1" path="res://scenes/map.tscn" id="2_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://d11vgdbmon1qc" path="res://assets/healthbarProgress.png" id="3_iywne"]
 [ext_resource type="PackedScene" uid="uid://bhhxgnay7nko0" path="res://scenes/mobs.tscn" id="3_lnu2h"]
 [ext_resource type="Script" uid="uid://cqrwah3tg0ix5" path="res://scripts/texture_progress_bar.gd" id="4_p57ef"]
@@ -16,6 +17,13 @@ point_count = 5
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_iywne")
+
+[node name="Map" parent="." instance=ExtResource("2_u5sy4")]
+show_behind_parent = true
+
+[node name="player" parent="." instance=ExtResource("1_uwrxv")]
+position = Vector2(300, 100)
+collision_mask = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -70,11 +78,58 @@ rotation = -1.5707964
 wait_time = 0.2
 autostart = true
 
+[node name="selector" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="selector"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -936.0
+offset_top = -524.5
+offset_right = 936.0
+offset_bottom = 524.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.6784314, 0.3647059, 1)
+
+[node name="OptionButton" type="OptionButton" parent="selector/ColorRect"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 362.5
+offset_right = 473.0
+offset_bottom = 565.5
+item_count = 2
+popup/item_0/text = "Legs"
+popup/item_0/id = 0
+popup/item_1/text = "Arms"
+popup/item_1/id = 1
+
+[node name="OptionButton" type="OptionButton" parent="selector/ColorRect/OptionButton"]
+layout_mode = 0
+offset_left = 1285.0
+offset_right = 1633.0
+offset_bottom = 203.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="selector/ColorRect"]
+layout_mode = 0
+offset_left = 594.0
+offset_top = 384.5
+offset_right = 1366.0
+offset_bottom = 534.0
+theme_override_font_sizes/normal_font_size = 100
+text = "For"
+horizontal_alignment = 1
 [node name="Mobs" parent="." instance=ExtResource("3_lnu2h")]
 position = Vector2(415, -150)
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
 [node name="Control" parent="CanvasLayer2" instance=ExtResource("10_vtaks")]
+
+[node name="Mobs" parent="." instance=ExtResource("3_lnu2h")]
+position = Vector2(47, -9)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="daydream-game"
-run/main_scene="uid://p8l6y07hul5m"
+config/name="StartMenu"
+run/main_scene="uid://6kxg6fiqd63v"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=640
 window/size/viewport_height=380
+window/stretch/mode="viewport"
+
+[dotnet]
+
+project/assembly_name="StartMenu"
 
 [input]
 

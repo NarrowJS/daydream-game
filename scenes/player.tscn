@@ -185,7 +185,7 @@ position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_qhqgy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(7, 7)
+zoom = Vector2(2, 2)
 
 [node name="attackarea" type="Area2D" parent="."]
 collision_layer = 2
