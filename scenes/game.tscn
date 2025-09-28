@@ -21,10 +21,23 @@ offset_right = -379.0
 offset_bottom = 78.0
 grow_horizontal = 0
 scale = Vector2(6, 6)
+step = 0.01
+value = 50.0
 texture_under = ExtResource("2_lbhrr")
-texture_over = ExtResource("3_iywne")
+texture_progress = ExtResource("3_iywne")
 script = ExtResource("4_p57ef")
 player = NodePath("../../player")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 8.0
+offset_right = 307.0
+offset_bottom = 110.0
+theme_override_font_sizes/normal_font_size = 80
+text = "Wave: 1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -111.0
@@ -34,6 +47,7 @@ offset_bottom = 63.0
 
 [node name="player" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(1, 0)
+maxHealth = 30
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, -14)
@@ -41,3 +55,66 @@ position = Vector2(0, -14)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 73)
 shape = SubResource("WorldBoundaryShape2D_uwrxv")
+
+[node name="selector" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="selector"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -936.0
+offset_top = -524.5
+offset_right = 936.0
+offset_bottom = 524.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.6784314, 0.3647059, 1)
+
+[node name="OptionButton" type="OptionButton" parent="selector/ColorRect"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 362.5
+offset_right = 473.0
+offset_bottom = 565.5
+item_count = 2
+popup/item_0/text = "Legs"
+popup/item_0/id = 0
+popup/item_1/text = "Arms"
+popup/item_1/id = 1
+
+[node name="OptionButton" type="OptionButton" parent="selector/ColorRect/OptionButton"]
+layout_mode = 0
+offset_left = 1285.0
+offset_right = 1633.0
+offset_bottom = 203.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="selector/ColorRect"]
+layout_mode = 0
+offset_left = 594.0
+offset_top = 384.5
+offset_right = 1366.0
+offset_bottom = 534.0
+theme_override_font_sizes/normal_font_size = 100
+text = "For"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="selector/ColorRect"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 29.5
+offset_right = 886.0
+offset_bottom = 179.0
+theme_override_font_sizes/normal_font_size = 100
+text = "Make A Sacrifice"
+
+[node name="Button" type="Button" parent="selector/ColorRect"]
+layout_mode = 0
+offset_left = 1373.0
+offset_top = 842.5
+offset_right = 1742.0
+offset_bottom = 1004.5
+theme_override_font_sizes/font_size = 70
+text = "Confirm"
