@@ -1,12 +1,17 @@
 extends TextureProgressBar
 
 @export var player: Player
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	player.healthChanged.connect(update)
-	update()
+	if player:
+		player.connect("healthChanged", Callable(self, "_on_health_changed"))
+		_update_bar()  # initialize the bar with current health
 
+# This function will be called when the signal fires
+func _on_health_changed(new_health):
+	_update_bar()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func update():
-	value = player.currentHealth * 100 / player.maxHealth
+# Updates the progress bar value
+func _update_bar():
+	if player:
+		value = player.currentHealth * 100 / player.maxHealth
