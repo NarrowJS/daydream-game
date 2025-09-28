@@ -5,6 +5,18 @@ var player_chase: bool = false
 var player: Player = null
 var man = null
 
+
+var health = 10
+
+func take_damage(amount: int):
+	health -= amount
+	if health <= 0:
+		die()
+
+func die():
+	get_parent().enemy_death()  # call the spawner's method
+	queue_free()
+
 func _ready():
 	man = get_node("/root/game/player")
 
@@ -14,11 +26,11 @@ func _physics_process(delta):
 		var direction = (player.position - position).normalized()
 		velocity = direction * speed
 		
-		$AnimatedSprite2D.play("walk")
+	##	$AnimatedSprite2D.play("walk")
 		$AnimatedSprite2D.flip_h = player.position.x < position.x
 	else:
 		velocity = Vector2.ZERO
-		$AnimatedSprite2D.play("idle")
+##		$AnimatedSprite2D.play("idle")
 	
 	move_and_slide()
 
@@ -38,7 +50,7 @@ func _on_hit_area_body_exited(body):
 
 
 func _on_orc_hit_p(body):
-	print("peeeee")
+	print("hit the player")
 	man.emit_signal("healthChanged", null)
 	man.currentHealth -= 1
 	print(man.currentHealth)

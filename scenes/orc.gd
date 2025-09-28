@@ -4,10 +4,22 @@ var speed = 0.005
 var player_chase = false
 var player = null
 
+
+var health = 10
+
+func take_damage(amount: int):
+	health -= amount
+	if health <= 0:
+		die()
+		
+func die():
+	get_parent().enemy_death()  # call the spawner's method
+	queue_free()
+
 func _physics_process(delta):
 	if player_chase:
 		position += (player.position - position)*speed
-		$AnimatedSprite2D.play("FlyForward")
+		##$AnimatedSprite2D.play("FlyForward")
 		if (player.position.x - position.x) < 0:
 			$AnimatedSprite2D.flip_h = true
 		else:

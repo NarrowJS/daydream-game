@@ -8,7 +8,7 @@ signal healthChanged
 
 @export var maxHealth = 30
 
-@export var currentHealth: int = 15
+@export var currentHealth: int = 30
 
 @onready var animated_sprite = $AnimatedSprite2D
 
@@ -24,9 +24,16 @@ func _process(delta):
 func attack():
 	sword_sfx.play()
 	var overlapping_objects = $attackarea.get_overlapping_areas()
+	print(overlapping_objects)
 	for area in overlapping_objects:
 		var parent = area.get_parent()
-		print(parent.name)
+		if parent.has_method("take_damage"):
+			parent.take_damage(10) # you can adjust damage value
+			print("Hit:", parent.name) # stop after killing the first one
+		
+		
+			
+			
 	
 	attacking = true
 	animated_sprite.play("attack")

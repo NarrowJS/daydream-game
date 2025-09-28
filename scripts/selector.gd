@@ -49,10 +49,7 @@ func _apply_player_stats():
 		
 		if buffType == "speed":
 			player.speed = 200
-		elif buffType == "strength":
-			player.damage = 30
-		elif buffType == "knockback":
-			player.knockback = 3
+		
 			
 		
 		
