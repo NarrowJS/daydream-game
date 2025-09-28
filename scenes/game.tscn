@@ -1,13 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://p8l6y07hul5m"]
 
+
+[gd_scene load_steps=5 format=3 uid="uid://p8l6y07hul5m"]
+
+[ext_resource type="PackedScene" uid="uid://bqhsfa6dyny2w" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://d1gowp6ib0asq" path="res://scenes/mobcreate.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bhhxgnay7nko0" path="res://scenes/mobs.tscn" id="3_lnu2h"]
+
+
+[gd_scene load_steps=7 format=3 uid="uid://p8l6y07hul5m"]
+
+
+[ext_resource type="Script" uid="uid://dxdub1tayry1e" path="res://scenes/mobSpawning.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://bqhsfa6dyny2w" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://4e7e52ix4hcn" path="res://assets/healthbarUnder.png" id="2_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://d11vgdbmon1qc" path="res://assets/healthbarProgress.png" id="3_iywne"]
-[ext_resource type="Script" uid="uid://cqrwah3tg0ix5" path="res://scripts/texture_progress_bar.gd" id="4_p57ef"]
+[ext_resource type="Script" path="res://scripts/texture_progress_bar.gd" id="4_p57ef"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
+[sub_resource type="Curve2D" id="Curve2D_iywne"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 120, 64, 0, 0, 0, 0, 120, -72, 0, 0, 0, 0, -112, -72, 0, 0, 0, 0, -112, 64, 0, 0, 0, 0, 120, 64)
+}
+point_count = 5
 
 [node name="game" type="Node2D"]
+
+script = ExtResource("1_yqjtg")
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+script = ExtResource("1_iywne")
+
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -47,10 +70,15 @@ offset_bottom = 63.0
 
 [node name="player" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(1, 0)
+
+collision_mask = 2
+
 maxHealth = 30
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(0, -14)
+
+[node name="Path2D" type="Path2D" parent="."]
+scale = Vector2(4, 4)
+curve = SubResource("Curve2D_iywne")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 73)
@@ -110,6 +138,21 @@ offset_bottom = 179.0
 theme_override_font_sizes/normal_font_size = 100
 text = "Make A Sacrifice"
 
+
+[node name="Mobs" parent="." instance=ExtResource("3_lnu2h")]
+position = Vector2(47, -9)
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(120, 64)
+rotation = -1.5707964
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
 [node name="Button" type="Button" parent="selector/ColorRect"]
 layout_mode = 0
 offset_left = 1373.0
@@ -118,3 +161,4 @@ offset_right = 1742.0
 offset_bottom = 1004.5
 theme_override_font_sizes/font_size = 70
 text = "Confirm"
+
