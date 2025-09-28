@@ -1,7 +1,4 @@
-extends CharacterBody2D
-
-
-class_name Player
+class_name Player extends CharacterBody2D
 
 signal healthChanged
 
@@ -15,11 +12,17 @@ signal healthChanged
 
 @onready var animated_sprite = $AnimatedSprite2D
 
+@onready var sword_sfx: AudioStreamPlayer = $AudioStreamPlayer
+
+
 func _process(delta):
+	if currentHealth <= 0:
+		self.queue_free()
 	if Input.is_action_just_pressed("attack"):
 		attack()
 
 func attack():
+	sword_sfx.play()
 	var overlapping_objects = $attackarea.get_overlapping_areas()
 	for area in overlapping_objects:
 		var parent = area.get_parent()

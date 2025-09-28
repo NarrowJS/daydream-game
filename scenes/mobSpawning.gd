@@ -10,6 +10,12 @@ extends Node2D
 }
 
 @onready var dead_enemies = 0
+func _ready():
+	var select = randf()
+	if select < 0.3:
+		makeAMob("orc")
+	else:
+		makeAMob("red")
 
 func enemy_death():
 	print("enemy death")
@@ -21,9 +27,13 @@ func enemy_death():
 
 func makeAMob():
 	for i in range(monster_dict[current_level]):
-		var newMob = preload("res://scenes/mobs.tscn").instantiate()
-		%PathFollow2D.progress_ratio = randf()
-		newMob.global_position = %PathFollow2D.global_position
+		var newMob
+	    if type == "orc":
+		    newMob = preload("res://scenes/mobss/orc.tscn").instantiate()
+	    else:
+		    newMob = preload("res://scenes/mobss/red.tscn").instantiate()
+	    %PathFollow2D.progress_ratio = randf()
+	    newMob.global_position = %PathFollow2D.global_position
 		add_child(newMob)
 		print("spawned mob")
 		await get_tree().create_timer(2.0).timeout	

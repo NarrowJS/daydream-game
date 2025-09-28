@@ -1,6 +1,6 @@
 [gd_scene load_steps=34 format=3 uid="uid://bhhxgnay7nko0"]
 
-[ext_resource type="Script" path="res://scenes/orc.gd" id="1_5tbdg"]
+[ext_resource type="Script" uid="uid://b5bncf0uxeqgi" path="res://scenes/orc.gd" id="1_5tbdg"]
 [ext_resource type="Texture2D" uid="uid://cnnd1ro06ajik" path="res://assets/Orc.png" id="2_486dv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s27y7"]
@@ -234,8 +234,9 @@ script = ExtResource("1_5tbdg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mo1jw")
-animation = &"walk"
-frame_progress = 0.5340065
+animation = &"attack"
+frame = 3
+frame_progress = 0.36703596
 
 [node name="hit area" type="Area2D" parent="."]
 scale = Vector2(1e-05, 1e-05)
