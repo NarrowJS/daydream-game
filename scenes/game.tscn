@@ -1,30 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://p8l6y07hul5m"]
+[gd_scene load_steps=11 format=3 uid="uid://p8l6y07hul5m"]
 
-[ext_resource type="Script" uid="uid://d1gowp6ib0asq" path="res://scenes/mobcreate.gd" id="1_yqjtg"]
-[ext_resource type="Script" uid="uid://dxdub1tayry1e" path="res://scenes/mobSpawning.gd" id="1_iywne"]
+[ext_resource type="Script" path="res://scenes/mobSpawning.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://bqhsfa6dyny2w" path="res://scenes/player.tscn" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://bhhxgnay7nko0" path="res://scenes/mobs.tscn" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://4e7e52ix4hcn" path="res://assets/healthbarUnder.png" id="2_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://d11vgdbmon1qc" path="res://assets/healthbarProgress.png" id="3_iywne"]
-[ext_resource type="Script" path="res://scripts/texture_progress_bar.gd" id="4_p57ef"]
+[ext_resource type="PackedScene" uid="uid://bhhxgnay7nko0" path="res://scenes/mobs.tscn" id="3_lnu2h"]
+[ext_resource type="Script" uid="uid://cqrwah3tg0ix5" path="res://scripts/texture_progress_bar.gd" id="4_p57ef"]
+[ext_resource type="Texture2D" uid="uid://dmy7y4d2bhurw" path="res://assets/UI_TravelBook_BookCover01a.png" id="6_gee14"]
+[ext_resource type="Texture2D" uid="uid://dwyfbmpqf1j75" path="res://assets/UI_TravelBook_Slot01a.png" id="6_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://d1qe3crknt6c4" path="res://assets/UI_TravelBook_IconTick01a.png" id="8_0tnpc"]
 
 [sub_resource type="Curve2D" id="Curve2D_iywne"]
 _data = {
-    "points": PackedVector2Array(
-        0, 0, 0, 0, 120, 64,
-        0, 0, 0, 0, 120, -72,
-        0, 0, 0, 0, -112, -72,
-        0, 0, 0, 0, -112, 64,
-        0, 0, 0, 0, 120, 64
-    )
+"points": PackedVector2Array(0, 0, 0, 0, 120, 64, 0, 0, 0, 0, 120, -72, 0, 0, 0, 0, -112, -72, 0, 0, 0, 0, -112, 64, 0, 0, 0, 0, 120, 64)
 }
 point_count = 5
 
 [node name="game" type="Node2D"]
-script = ExtResource("1_iywne") # using mobSpawning.gd as main
-
-[node name="TileMap" type="TileMap" parent="."]
-format = 2
+script = ExtResource("1_iywne")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -65,7 +58,6 @@ offset_bottom = 63.0
 [node name="player" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(1, 0)
 collision_mask = 2
-maxHealth = 30
 
 [node name="Path2D" type="Path2D" parent="."]
 scale = Vector2(4, 4)
@@ -80,12 +72,10 @@ rotation = -1.5707964
 wait_time = 0.2
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-
 [node name="selector" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="selector"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -99,51 +89,180 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.6784314, 0.3647059, 1)
 
-[node name="OptionButton" type="OptionButton" parent="selector/ColorRect"]
-layout_mode = 0
-offset_left = 125.0
-offset_top = 362.5
-offset_right = 473.0
-offset_bottom = 565.5
-item_count = 2
-popup/item_0/text = "Legs"
-popup/item_0/id = 0
-popup/item_1/text = "Arms"
-popup/item_1/id = 1
+[node name="TextureRect" type="TextureRect" parent="selector"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -905.0
+offset_top = -509.0
+offset_right = 906.0
+offset_bottom = 506.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_gee14")
 
-[node name="OptionButton" type="OptionButton" parent="selector/ColorRect/OptionButton"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="selector/TextureRect"]
 layout_mode = 0
-offset_left = 1285.0
-offset_right = 1633.0
-offset_bottom = 203.0
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="selector/ColorRect"]
-layout_mode = 0
-offset_left = 594.0
-offset_top = 384.5
-offset_right = 1366.0
-offset_bottom = 534.0
+offset_left = 513.5
+offset_top = 385.5
+offset_right = 1285.5
+offset_bottom = 535.0
 theme_override_font_sizes/normal_font_size = 100
-text = "For"
+text = "_________________"
 horizontal_alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="selector/ColorRect"]
+[node name="OptionButton2" type="OptionButton" parent="selector/TextureRect"]
+visible = false
 layout_mode = 0
-offset_left = 65.0
-offset_top = 29.5
-offset_right = 886.0
-offset_bottom = 179.0
-theme_override_font_sizes/normal_font_size = 100
-text = "Make A Sacrifice"
+offset_left = 726.0
+offset_top = 163.0
+offset_right = 1074.0
+offset_bottom = 366.0
+item_count = 3
+popup/item_0/text = "Speed"
+popup/item_0/id = 0
+popup/item_1/text = "Damage"
+popup/item_1/id = 1
+popup/item_2/text = "Knockback"
+popup/item_2/id = 2
 
-[node name="Button" type="Button" parent="selector/ColorRect"]
+[node name="GridContainer" type="GridContainer" parent="selector/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -509.5
+offset_top = 47.5
+offset_right = -411.5
+offset_bottom = 77.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(10.4, 8.56)
+columns = 3
+
+[node name="TextureButton" type="TextureButton" parent="selector/TextureRect/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_u5sy4")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="selector/TextureRect/GridContainer/TextureButton"]
 layout_mode = 0
-offset_left = 1373.0
-offset_top = 842.5
-offset_right = 1742.0
-offset_bottom = 1004.5
-theme_override_font_sizes/font_size = 70
-text = "Confirm"
+offset_left = 1.923077
+offset_right = 41.923077
+offset_bottom = 40.0
+scale = Vector2(0.7038462, 0.7102805)
+theme_override_font_sizes/normal_font_size = 9
+text = "Eyes"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton2" type="TextureButton" parent="selector/TextureRect/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_u5sy4")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="selector/TextureRect/GridContainer/TextureButton2"]
+layout_mode = 0
+offset_left = 1.923077
+offset_right = 41.923077
+offset_bottom = 40.0
+scale = Vector2(0.7038462, 0.7102805)
+theme_override_font_sizes/normal_font_size = 9
+text = "Arms"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton3" type="TextureButton" parent="selector/TextureRect/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_u5sy4")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="selector/TextureRect/GridContainer/TextureButton3"]
+layout_mode = 0
+offset_left = 1.923077
+offset_right = 41.923077
+offset_bottom = 40.0
+scale = Vector2(0.7038462, 0.7102805)
+theme_override_font_sizes/normal_font_size = 9
+text = "Legs"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="selector/TextureRect"]
+layout_mode = 0
+offset_left = 1544.5
+offset_top = 656.5
+offset_right = 1560.4836
+offset_bottom = 675.22595
+scale = Vector2(9.759999, 8.319998)
+texture_normal = ExtResource("8_0tnpc")
+stretch_mode = 3
+
+[node name="GridContainer2" type="GridContainer" parent="selector/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -509.5
+offset_top = -391.5
+offset_right = -411.5
+offset_bottom = -361.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(10.4, 8.56)
+columns = 3
+
+[node name="TextureButton" type="TextureButton" parent="selector/TextureRect/GridContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("6_u5sy4")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="selector/TextureRect/GridContainer2/TextureButton"]
+layout_mode = 0
+offset_left = 1.923077
+offset_right = 41.923077
+offset_bottom = 40.0
+scale = Vector2(0.7038462, 0.7102805)
+theme_override_font_sizes/normal_font_size = 9
+text = "Speed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton2" type="TextureButton" parent="selector/TextureRect/GridContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("6_u5sy4")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="selector/TextureRect/GridContainer2/TextureButton2"]
+layout_mode = 0
+offset_left = 1.923077
+offset_right = 41.923077
+offset_bottom = 40.0
+scale = Vector2(0.7038462, 0.7102805)
+theme_override_font_sizes/normal_font_size = 9
+text = "Strength"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton3" type="TextureButton" parent="selector/TextureRect/GridContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("6_u5sy4")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="selector/TextureRect/GridContainer2/TextureButton3"]
+layout_mode = 0
+offset_left = 1.923077
+offset_right = 41.923077
+offset_bottom = 40.0
+scale = Vector2(0.7038462, 0.7102805)
+theme_override_font_sizes/normal_font_size = 9
+text = "Knock
+Back"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Mobs" parent="." instance=ExtResource("3_lnu2h")]
-position = Vector2(47, -9)
+position = Vector2(415, -150)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
