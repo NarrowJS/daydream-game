@@ -7,6 +7,14 @@ extends Node2D
 	3:3,
 	4:4,
 	5:5,
+	6:10,
+	7:12,
+	8:15,
+	9:17,
+	10:25,
+	11:26,
+	12:30,
+	13:31
 }
 
 @onready var dead_enemies = 0
@@ -50,6 +58,16 @@ func update_level(level):
 		4:
 			print("level 4")
 		5:
+			print("level 5")
+		6:
+			print("level 5")
+		7:
+			print("level 5")
+		8:
+			print("level 5")
+		9:
+			print("level 5")
+		10:
 			print("level 5")
 	makeAMob("red")
 		
