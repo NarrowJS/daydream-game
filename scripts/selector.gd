@@ -49,6 +49,7 @@ func _apply_player_stats():
 		
 		if buffType == "speed":
 			player.speed = 200
+			player.currentHealth = 15
 		
 			
 		

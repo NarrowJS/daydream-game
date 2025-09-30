@@ -28,7 +28,7 @@ func attack():
 	for area in overlapping_objects:
 		var parent = area.get_parent()
 		if parent.has_method("take_damage"):
-			parent.take_damage(10) # you can adjust damage value
+			parent.take_damage(2) # you can adjust damage value
 			print("Hit:", parent.name) # stop after killing the first one
 		
 		
